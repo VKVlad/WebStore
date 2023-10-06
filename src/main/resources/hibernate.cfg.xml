@@ -1,0 +1,26 @@
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mariadb://localhost:3306/store</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MariaDBDialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Specify annotated class -->
+        <mapping class="khpi.kvp.lab2_kvp.entity.User"/>
+        <mapping class="khpi.kvp.lab2_kvp.entity.Order"/>
+        <mapping class="khpi.kvp.lab2_kvp.entity.Good"/>
+        <mapping package="khpi.kvp.lab2_kvp.entity" />
+
+    </session-factory>
+</hibernate-configuration>

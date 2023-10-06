@@ -1,0 +1,65 @@
+body {
+   background-color: #efffff;
+}
+
+span {
+   color: darkred;
+   font-size: 20px;
+   font-family: 'Bebas Neue', sans-serif;
+}
+
+.login-wrap {
+   max-width: 400px;
+   margin: 0 auto;
+   padding: 200px 20px;
+   font-family: 'Bebas Neue', sans-serif;
+}
+
+/* Apply styling to the form container */
+.login-html {
+   position: relative;
+   width: 100%;
+   background: #246E66;
+   padding: 40px;
+   border-radius: 10px;
+   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Apply styling to the input fields */
+.input {
+   width: 95%;
+   padding: 10px;
+   margin-bottom: 20px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+}
+
+/* Apply styling to the label */
+.label {
+   font-size: 22px;
+   color: #ffffff;
+}
+
+/* Apply styling to the checkbox label */
+.check label {
+   font-size: 20px;
+   color: #e8e8e8;
+   margin-left: 5px;
+}
+
+/* Apply styling to the submit button */
+.button {
+   margin-bottom: 10px;
+   width: 100%;
+   padding: 10px;
+   border: none;
+   background-color: #86D8CF;
+   color: white;
+   font-size: 23px;
+   cursor: pointer;
+   border-radius: 5px;
+}
+
+.button:hover {
+   background-color: #86D8CF;
+}
