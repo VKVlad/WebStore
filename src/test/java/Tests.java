@@ -16,7 +16,7 @@ public class Tests {
     void testInsert() {
         User user = daoUser.findByKey(new User("user"));
 
-        Good good = daoGood.findById(1L);
+        Good good = daoGood.findById(59L);
 
         Order order = new Order(user, "manager1", good, 1, good.getPrice(), LocalDate.now());
 

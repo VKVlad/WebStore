@@ -2,6 +2,7 @@ package khpi.kvp.lab2_kvp.dao;
 
 import khpi.kvp.lab2_kvp.dbutil.DBConnector;
 import khpi.kvp.lab2_kvp.entity.Good;
+import khpi.kvp.lab2_kvp.entity.Order;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -20,6 +21,7 @@ public class DAOGood implements Idao<Good>{
         }
         return list;
     }
+
 
     @Override
     public Good findById(Long id) {

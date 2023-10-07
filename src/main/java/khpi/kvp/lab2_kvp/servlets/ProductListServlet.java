@@ -30,10 +30,32 @@ public class ProductListServlet extends HttpServlet {
         session = request.getSession();
         session.setAttribute("userId", userId);
         request.setAttribute("products", list);
+        String successMessage = (String) session.getAttribute("successMessage");
+        if (successMessage != null) {
+            session.removeAttribute("successMessage");
+            request.setAttribute("successMessage", successMessage);
+        }
+
+        String errorMessage = (String) session.getAttribute("errorMessage");
+        if (errorMessage != null) {
+            session.removeAttribute("errorMessage");
+            request.setAttribute("errorMessage", errorMessage);
+        }
+        String successMessageDelete = (String) session.getAttribute("successMessageDelete");
+        if (successMessageDelete != null) {
+            session.removeAttribute("successMessageDelete");
+            request.setAttribute("successMessageDelete", successMessageDelete);
+        }
+
+        String errorMessageDelete = (String) session.getAttribute("errorMessageDelete");
+        if (errorMessageDelete != null) {
+            session.removeAttribute("errorMessageDelete");
+            request.setAttribute("errorMessageDelete", errorMessageDelete);
+        }
         request.getRequestDispatcher("/ProductList.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        response.sendRedirect(request.getContextPath() + "/productServlet");
     }
 }

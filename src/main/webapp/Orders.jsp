@@ -33,9 +33,20 @@
                         <h3>Price: <fmt:setLocale value="uk_UA"/>
                             <fmt:formatNumber value="${e.getPrice()}" type="currency"/></h3>
                     </div>
-                    <a href="<c:url value='/ordersServlet'>
-                                <c:param name='productId' value='${e.getId()}' />
-                              </c:url>">Buy Now</a>
+                    <c:url var="deleteUrl" value="/deleteGood">
+                        <c:param name="productId" value="${e.getId()}" />
+                    </c:url>
+                    <div class="button-container">
+                    <form action="${deleteUrl}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                        <c:url var="editUrl" value="/editGood">
+                            <c:param name="productId" value="${e.getId()}" />
+                        </c:url>
+                        <form action="${editUrl}" method="get">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </div>>
                 </div>
             </div>
         </div>

@@ -51,7 +51,6 @@ public class DAOOrder implements Idao<Order>{
                     .setParameter("userId", template.getId())
                     .getResultList();
 
-            // Initialize the Good entities within the Hibernate session
             for (Order order : list) {
                 Hibernate.initialize(order.getGood());
             }
@@ -59,7 +58,20 @@ public class DAOOrder implements Idao<Order>{
         return list;
     }
 
+    public List<Order> getListByGood(Good template) {
+        List<Order> list;
+        try (Session session = DBConnector.getSessionFactory().openSession()) {
+            list = session.createQuery("FROM Order WHERE good.id = :goodId", Order.class)
+                    .setParameter("goodId", template.getId())
+                    .getResultList();
 
+            // Initialize the Good entities within the Hibernate session
+            for (Order order : list) {
+                Hibernate.initialize(order.getGood());
+            }
+        }
+        return list;
+    }
 
     @Override
     public boolean insert(Order entityToSave) {

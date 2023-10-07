@@ -9,40 +9,43 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import khpi.kvp.lab2_kvp.dao.DAOGood;
 import khpi.kvp.lab2_kvp.dao.DAOOrder;
-import khpi.kvp.lab2_kvp.dao.DAOUser;
 import khpi.kvp.lab2_kvp.entity.Good;
 import khpi.kvp.lab2_kvp.entity.Order;
-import khpi.kvp.lab2_kvp.entity.User;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.util.List;
 
-@WebServlet("/ordersServlet")
-public class OrdersServlet extends HttpServlet {
-    private DAOUser daoUser = new DAOUser();
-    private DAOOrder daoOrder = new DAOOrder();
+
+@WebServlet("/deleteGood")
+public class DeleteGoodServlet extends HttpServlet {
     private DAOGood daoGood = new DAOGood();
+    private DAOOrder daoOrder = new DAOOrder();
+    public void init() throws ServletException {
+        super.init();
+        daoGood = new DAOGood();
+        daoOrder = new DAOOrder();
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Long userId = (Long) session.getAttribute("userId");
-        User user = daoUser.findById(userId);
 
         String goodId = req.getParameter("productId");
-
         Good good = daoGood.findById(Long.valueOf(goodId));
+        List<Order> orders = daoOrder.getListByGood(good);
+        for(Order or : orders) {
+            daoOrder.delete(or.getId());
+        }
+        daoGood.delete(Long.valueOf(goodId));
 
-        Order order = new Order(user, "manager1", good, 1, good.getPrice(), LocalDate.now());
-        Order findOrder = daoOrder.findByKey(order, user, good);
-        if (findOrder == null) {
-            daoOrder.insert(order);
-            String successMessage = "Order placed successfully";
-            session.setAttribute("successMessage", successMessage);
+        if (daoGood.findById(Long.valueOf(goodId)) == null) {
+            String successMessageDelete = "Removal completed successfully";
+            session.setAttribute("successMessageDelete", successMessageDelete);
         } else {
-            String errorMessage = "You have already ordered this product";
-            session.setAttribute("errorMessage", errorMessage);
+            String errorMessageDelete = "Removal failed";
+            session.setAttribute("errorMessageDelete", errorMessageDelete);
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/productServlet");
         dispatcher.forward(req, resp);
     }
+
 }

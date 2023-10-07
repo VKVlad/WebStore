@@ -46,16 +46,26 @@ public class ShowOrdersServlet extends HttpServlet {
                     goods.add(order.getGood());
                 }
             }
-
             req.setAttribute("orders", goods);
         } else {
             req.setAttribute("errorMessage", "User ID not found in the session.");
+        }
+        String successMessageDelete = (String) session.getAttribute("successMessageDelete");
+        if (successMessageDelete != null) {
+            session.removeAttribute("successMessageDelete");
+            req.setAttribute("successMessageDelete", successMessageDelete);
+        }
+
+        String errorMessageDelete = (String) session.getAttribute("errorMessageDelete");
+        if (errorMessageDelete != null) {
+            session.removeAttribute("errorMessageDelete");
+            req.setAttribute("errorMessageDelete", errorMessageDelete);
         }
         req.getRequestDispatcher("/Orders.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/showOrders");
     }
 }

@@ -21,6 +21,12 @@
 </nav>
 <h1>Welcome to the Lab2!</h1>
 <c:choose>
+    <c:when test="${not empty successMessageDelete}">
+        <div style="color: green; margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 100px; width: 80%; margin: 0 auto;"><h2>${successMessageDelete}</h2></div>
+    </c:when>
+    <c:when test="${not empty errorMessageDelete}">
+        <div style="color: red; margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 100px; width: 80%; margin: 0 auto;"><h2>${errorMessageDelete}</h2></div>
+    </c:when>
     <c:when test="${not empty successMessage}">
         <div style="color: green; margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 100px; width: 80%; margin: 0 auto;"><h2>${successMessage}</h2></div>
     </c:when>
@@ -41,15 +47,28 @@
                         <h3>Price: <fmt:setLocale value="uk_UA"/>
                             <fmt:formatNumber value="${e.getPrice()}" type="currency"/></h3>
                     </div>
-                    <a href="<c:url value='/ordersServlet'>
-                                <c:param name='productId' value='${e.getId()}' />
-                              </c:url>">Buy Now</a>
-                    <a href="<c:url value='/ordersServlet'>
-                                <c:param name='productId' value='${e.getId()}' />
-                              </c:url>">Delete</a>
-                    <a href="<c:url value='/ordersServlet'>
-                                <c:param name='productId' value='${e.getId()}' />
-                              </c:url>">Edit</a>
+                    <div class="button-container">
+                        <c:url var="buyUrl" value="/ordersServlet">
+                            <c:param name="productId" value="${e.getId()}" />
+                        </c:url>
+                        <form action="${buyUrl}" method="post" class="">
+                            <button type="submit">Buy</button>
+                        </form>
+
+                        <c:url var="deleteUrl" value="/deleteGood">
+                            <c:param name="productId" value="${e.getId()}" />
+                        </c:url>
+                        <form action="${deleteUrl}" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+
+                        <c:url var="editUrl" value="/editGood">
+                            <c:param name="productId" value="${e.getId()}" />
+                        </c:url>
+                        <form action="${editUrl}" method="get">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,4 +76,3 @@
 </div>
 </body>
 </html>
-
