@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Login Page</title>
     <style>
-        <%@include file="style.css"%>
+        <%@include file="css/style.css"%>
     </style>
 </head>
 <body>

@@ -29,10 +29,16 @@ public class OrdersServlet extends HttpServlet {
         User user = daoUser.findById(userId);
 
         String goodId = req.getParameter("productId");
-
+        String quantityParam = req.getParameter("quantity");
+        int quantity = Integer.parseInt(quantityParam);
         Good good = daoGood.findById(Long.valueOf(goodId));
-
-        Order order = new Order(user, "manager1", good, 1, good.getPrice(), LocalDate.now());
+        double price;
+        if(quantity >= 3){
+            price = good.getPriceOpt() * quantity;
+        } else {
+            price = good.getPrice() * quantity;
+        }
+        Order order = new Order(user, "manager1", good, quantity, price, LocalDate.now());
         Order findOrder = daoOrder.findByKey(order, user, good);
         if (findOrder == null) {
             daoOrder.insert(order);

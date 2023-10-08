@@ -25,7 +25,6 @@ public class ShowOrdersServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        // Initialize the DAOUser
         daoUser = new DAOUser();
         daoOrder = new DAOOrder();
     }
@@ -38,15 +37,9 @@ public class ShowOrdersServlet extends HttpServlet {
         if (userId != null) {
             User user = daoUser.findById(userId);
 
-            List<Good> goods = new ArrayList<>();
-            List<Order> orders = daoOrder.getListByUser(user);
+            List<Order> orderss = daoOrder.getListByUser(user);
 
-            if (orders != null) {
-                for (Order order : orders) {
-                    goods.add(order.getGood());
-                }
-            }
-            req.setAttribute("orders", goods);
+            req.setAttribute("orders", orderss);
         } else {
             req.setAttribute("errorMessage", "User ID not found in the session.");
         }

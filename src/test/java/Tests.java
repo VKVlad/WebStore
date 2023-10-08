@@ -22,4 +22,10 @@ public class Tests {
 
         daoOrder.insert(order);
     }
+
+    @Test
+    void testFindOrder() {
+        Order order = daoOrder.findById(81L);
+        System.out.println(order.getCount());
+    }
 }

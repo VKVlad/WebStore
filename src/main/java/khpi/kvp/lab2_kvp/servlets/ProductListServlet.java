@@ -15,8 +15,6 @@ import java.util.List;
 
 @WebServlet("/productServlet")
 public class ProductListServlet extends HttpServlet {
-
-    private static final int NUM_PRODUCTS = 10;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Good> list = (new DAOGood()).getAllList();

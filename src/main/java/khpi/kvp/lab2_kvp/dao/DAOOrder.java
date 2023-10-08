@@ -52,7 +52,7 @@ public class DAOOrder implements Idao<Order>{
                     .getResultList();
 
             for (Order order : list) {
-                Hibernate.initialize(order.getGood());
+                Hibernate.initialize(order.getReceiver());
             }
         }
         return list;
