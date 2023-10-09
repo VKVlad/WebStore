@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
 
 body {
-    background-color: #efffff;
+    background-color: #D8E6DA;
     max-width: 1200px; /* Adjust the max-width as needed */
     margin: 20px auto; /* Creates top and side margins */
     padding: 0 20px; /* Adds padding to the content */
@@ -15,7 +15,7 @@ body {
 
 
 h1 {
-    color: #246E66;
+    color: #459A7F;
     text-align: center;
     margin-top: 50px;
 }
@@ -40,31 +40,31 @@ nav li {
 
 nav a {
     text-decoration: none;
-    color: #246e66;
+    color: #459A7F;
     font-size: 20px;
     font-weight: bold;
     padding: 15px 40px; /* Padding for the buttons */
-    border: 1px solid #246e66; /* Add border */
-    border-radius: 5px; /* Add rounded corners */
+    border: 1px solid #459A7F; /* Add border */
+    border-radius: 50px; /* Add rounded corners */
 }
 
 nav a:hover {
-    background-color: #246e66; /* Dark green background on hover */
+    background-color: #459A7F; /* Dark green background on hover */
     color: #fff; /* White text on hover */
 }
 
 nav .logout a {
     text-decoration: none;
-    color: #bb6b6b;
+    color: #D27147;
     font-size: 20px;
     font-weight: bold;
     padding: 15px 40px; /* Padding for the buttons */
-    border: 1px solid #bb6b6b; /* Add border */
-    border-radius: 5px;
+    border: 1px solid #D27147; /* Add border */
+    border-radius: 50px;
 }
 
 nav .logout a:hover {
-    background-color: #bb6b6b;
+    background-color: #D27147;
     color: #fff;
 }
 
@@ -89,7 +89,7 @@ ul li:last-child {
     position: relative;
     width: 320px;
     height: 450px;
-    background: #246e66;
+    background: #459A7F;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
@@ -101,7 +101,7 @@ ul li:last-child {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #86D8CF;
+    background: #00C890;
     clip-path: circle(150px at 80% 20%);
     transition: 0.5s ease-out;
 }
@@ -116,26 +116,26 @@ ul li:last-child {
     font-size: 10em;
     font-weight: 800;
     font-style: italic;
-    color: rgb(107, 173, 166);
+    color: rgb(30, 120, 95);
 }
 .card .imgBx {
     position: absolute;
     top: 35%;
     transform: translateY(-50%);
     z-index: 1000;
-    width: 100%;
-    height: 220px;
+    width: 105%;
+    height: 230px;
     transition: 0.5s;
 }
 .card:hover .imgBx {
     top: 0;
-    transform: translateY(0);
+    transform: translateY(0) scale(0.8);
 }
 .card img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-25deg);
+    transform: translate(-53%, -50%);
     width: 270px;
 }
 .card .contentBx {
@@ -255,7 +255,7 @@ ul li:last-child {
     align-items: center;
     padding: 0 20px; /* Исправлено: добавлен отступ слева и справа */
     position: absolute;
-    bottom: 20px; /* Исправлено: установка нижнего отступа */
+    bottom: 30px; /* Исправлено: установка нижнего отступа */
     width: calc(100% - 40px); /* Исправлено: ширина контейнера с учетом отступов */
 }
 
@@ -290,7 +290,7 @@ ul li:last-child {
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 2005;
+    z-index: 1005;
 }
 
 .card .delete-button {
@@ -313,7 +313,7 @@ ul li:last-child {
 
 .add-button {
     border: none;
-    background-color: #4fdca6; /* Зеленый цвет */
+    background-color: #3b6c64; /* Зеленый цвет */
     color: white;
     padding: 20px;
     text-align: center;
@@ -328,24 +328,140 @@ ul li:last-child {
 }
 
 .add-button:hover {
-    background-color: #46c494; /* Зеленый цвет при наведении */
+    background-color: #25443f; /* Зеленый цвет при наведении */
 }
 
-#productFormContainer {
+.modal {
+    display: none;
     position: fixed;
+    z-index: 1010;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%; /* Adjusted width */
+    height: auto; /* Adjusted height */
+    padding: 20px;
+    border-radius: 10px;
+    overflow: auto; /* Enable scrolling if content overflows */
+    background-color: #00C890;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content.slideIn {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Slide out animation for the modal */
+.modal-content.slideOut {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 10px;
+    text-align: center;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.close {
+    float: right;
+    font-size: 50px;
+    cursor: pointer;
+    color: #d74b4b;
+
+}
+
+
+.close:hover,
+.close:focus {
+    color: #c04242;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    z-index: 1009;
     top: 0;
-    right: -400px; /* Начальное положение - форма смещена вправо за пределы экрана */
+    left: 0;
+    width: 100%;
     height: 100%;
-    width: 400px; /* Ширина формы */
-    background-color: white;
-    box-shadow: -1px 0 10px rgba(0, 0, 0, 0.2); /* Тень для эффекта накладывания */
-    overflow-y: auto; /* Добавление вертикального скролла при необходимости */
-    transition: right 0.3s ease; /* Анимация для плавного появления */
-    z-index: 1000; /* Убедитесь, что форма поверх всего остального контента */
+    background: rgba(0, 0, 0, 0.5);
 }
 
-#productFormContainer.open {
-    right: 0; /* Отображаем форму, смещая вправо на 0 пикселей */
+#modalTitle {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: white;
 }
 
+label {
+    font-weight: bold;
+    color: #ffffff; /* Make the label white */
+    font-size: 1.2em; /* Increase label font size */
+    margin-bottom: 5px;
+}
 
+.modal-content input {
+    width: calc(100% - 20px); /* Adjusted width with reduced padding */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Стили для кнопки "Save" */
+.button_save {
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #37645c;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100px;
+}
+
+.button_save:hover {
+    background-color: #274641;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+#manager {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white; /* Background color for contrast */
+}
+
+#priceOrder{
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white; /* Background color for contrast */
+}
+
+#sendTake{
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white; /* Background color for contrast */
+}

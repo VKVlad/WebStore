@@ -90,7 +90,10 @@ public class Good {
         this.imagePath = imagePath;
     }
 
-    public Good(String nazva, String article, double price) {
+    public Good(String nazva, double price, double priceOpt, String category, String article, String imagePath) {
+        this.category = category;
+        this.imagePath = imagePath;
+        this.priceOpt = priceOpt;
         this.nazva = nazva;
         this.article = article;
         this.price = price;

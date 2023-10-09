@@ -51,6 +51,16 @@ public class Order {
         this.sendTake = sendTake;
     }
 
+    public Order(User receiver, String manager, Good good, Integer count, Double priceOrder, LocalDate sendTake, LocalDate sendTime) {
+        this.receiver = receiver;
+        this.manager = manager;
+        this.good = good;
+        this.count = count;
+        this.priceOrder = priceOrder;
+        this.sendTake = sendTake;
+        this.sendTime = sendTime;
+    }
+
     public Long getId() {
         return id;
     }

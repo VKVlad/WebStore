@@ -37,7 +37,7 @@ public class DAOGood implements Idao<Good>{
         Good goodInDB = null;
         try (Session session = DBConnector.getSessionFactory().openSession()) {
             list = session.createQuery("from Good", Good.class).getResultList();
-            Optional<Good> listFiltered = list.stream().filter(good -> good.getNazva().equals(template.getNazva())).findFirst();
+            Optional<Good> listFiltered = list.stream().filter(good -> good.getArticle().equals(template.getArticle())).findFirst();
             if (listFiltered.isPresent()) {
                 goodInDB = listFiltered.get();
             }
