@@ -75,7 +75,7 @@ public class FilterProductServlet extends HttpServlet {
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("products", list);
+        session.setAttribute("productsFilter", list);
         response.sendRedirect(request.getContextPath() + "/productServlet");
     }
 

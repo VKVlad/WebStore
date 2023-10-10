@@ -25,11 +25,10 @@ public class ProductListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        List<Good> list = (List<Good>) session.getAttribute("products");
-
-        if(list == null) {
+        List<Good> list = (List<Good>) session.getAttribute("productsFilter");
+        if (list == null) {
             list = daoGood.getAllList();
-            System.out.println("Null");
+            session.removeAttribute("productsFilter");
         } else {
             System.out.println("Not null");
         }

@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import khpi.kvp.lab2_kvp.dao.DAOGood;
 import khpi.kvp.lab2_kvp.dao.DAOOrder;
 import khpi.kvp.lab2_kvp.entity.Good;
@@ -35,6 +36,8 @@ public class EditGoodServlet extends HttpServlet {
         Gson gson = new Gson();
         Good product = gson.fromJson(jsonData.toString(), Good.class);
         daoGood.update(product.getId(), product);
+        HttpSession session = request.getSession();
+        session.removeAttribute("productsFilter");
         response.sendRedirect(request.getContextPath() + "/productServlet");
     }
 }
