@@ -88,101 +88,6 @@
             const fileName = "images/" + filePath.split('\\').pop();  // Get the file name from the file path
             document.getElementById('image_path').value = fileName;
         }
-
-        function applyFilters() {
-            const category = document.getElementById('categoryFilter').value;
-            const minPrice = document.getElementById('minPriceFilter').value;
-            const maxPrice = document.getElementById('maxPriceFilter').value;
-            const sortOrder = document.getElementById('sortOrder').value;
-
-            const dataFilter = {
-                category: category,
-                minPrice: minPrice,
-                maxPrice: maxPrice,
-                sortOrder: sortOrder,
-            }
-
-            // Check if filters are different from current URL parameters
-            const currentCategory = new URLSearchParams(window.location.search).get('category');
-            const currentMinPrice = new URLSearchParams(window.location.search).get('minPrice');
-            const currentMaxPrice = new URLSearchParams(window.location.search).get('maxPrice');
-            const currentSortOrder = new URLSearchParams(window.location.search).get('sortOrder');
-
-
-            if (category !== currentCategory || minPrice !== currentMinPrice || maxPrice !== currentMaxPrice || sortOrder !== currentSortOrder) {
-                const urlParams = new URLSearchParams();
-                urlParams.set('category', category);
-                urlParams.set('minPrice', minPrice);
-                urlParams.set('maxPrice', maxPrice);
-                urlParams.set('sortOrder', sortOrder);
-                window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`);
-            }
-
-            localStorage.setItem('categoryFilter', category);
-            localStorage.setItem('minPriceFilter', minPrice);
-            localStorage.setItem('maxPriceFilter', maxPrice);
-            localStorage.setItem('sortOrder', sortOrder);
-
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '${pageContext.request.contextPath}/filterProducts', true);
-            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        // Handle successful response if needed
-                        // Reload the page after applying filters
-                        window.location.reload();
-                    } else {
-                        alert('Error filters change: ' + xhr.responseText);
-                    }
-                }
-            };
-
-            console.log('Data being sent:', dataFilter);
-            xhr.send(JSON.stringify(dataFilter));
-        }
-
-        window.addEventListener('load', function () {
-            const categoryFilter = localStorage.getItem('categoryFilter');
-            const minPriceFilter = localStorage.getItem('minPriceFilter');
-            const maxPriceFilter = localStorage.getItem('maxPriceFilter');
-            const sortOrder = localStorage.getItem('sortOrder');
-
-            if (categoryFilter) {
-                document.getElementById('categoryFilter').value = categoryFilter;
-            }
-            if (minPriceFilter) {
-                document.getElementById('minPriceFilter').value = minPriceFilter;
-            }
-            if (maxPriceFilter) {
-                document.getElementById('maxPriceFilter').value = maxPriceFilter;
-            }
-            if (sortOrder) {
-                document.getElementById('sortOrder').value = sortOrder;
-            }
-        });
-
-        function resetFilters() {
-            // Reset filter values and localStorage
-            document.getElementById('categoryFilter').value = '';
-            document.getElementById('minPriceFilter').value = 1;
-            document.getElementById('maxPriceFilter').value = 10000;
-            document.getElementById('sortOrder').value = '';
-
-            localStorage.removeItem('categoryFilter');
-            localStorage.removeItem('minPriceFilter');
-            localStorage.removeItem('maxPriceFilter');
-            localStorage.removeItem('sortOrder');
-
-            applyFilters();  // Apply filters after resetting
-        }
-
-        function updatePriceValue() {
-            const priceRangeValue = document.getElementById('priceRangeValue');
-            const priceFilter = document.getElementById('priceFilter');
-            priceRangeValue.textContent = priceFilter.value;
-            applyFilters();
-        }
     </script>
 </head>
 <body>
@@ -195,38 +100,10 @@
     </ul>
 </nav>
 <div style="display: flex; justify-content: space-between; align-items: center; margin-left: 37.7%;">
-    <h1>Welcome to the store!</h1>
+    <h1>Welcome to the Lab2!</h1>
     <button onclick="toggleAddForm()" class="add-button">+</button>
 </div>
-<div class="filters">
-    <div class="filter-category">
-        <label for="categoryFilter">Category:</label>
-        <select id="categoryFilter" onchange="applyFilters()">
-            <option value="">All Categories</option>
-            <option value="electronics">Electronics</option>
-            <option value="clothing">Clothing</option>
-            <option value="home decor">Home Decor</option>
-        </select>
-    </div>
-    <div class="filter-price">
-        <label for="minPriceFilter" class="filter-price-label">Min Price:</label>
-        <input type="number" id="minPriceFilter" min="1" max="9999" step="10" value="0" onchange="applyFilters()">
-    </div>
-    <div class="filter-price">
-        <label for="maxPriceFilter" class="filter-price-label">Max Price:</label>
-        <input type="number" id="maxPriceFilter" min="1" max="9999" step="10" value="10000" onchange="applyFilters()">
-    </div>
 
-    <div class="select-filter">
-        <label for="sortOrder">Sort Order:</label>
-        <select id="sortOrder" onchange="applyFilters()">
-            <option value="">None</option>
-            <option value="asc">Price Low to High</option>
-            <option value="desc">Price High to Low</option>
-        </select>
-    </div>
-    <button onclick="resetFilters()" class="reset-button"><i class="fas fa-trash"></i></button>
-</div>
 <c:choose>
     <c:when test="${not empty successMessageDelete}">
         <div style="color: green; margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 100px; width: 80%; margin: 0 auto;"><h2>${successMessageDelete}</h2></div>
