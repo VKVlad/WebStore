@@ -1,6 +1,5 @@
 package khpi.kvp.lab2_kvp.servlets;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,25 +7,35 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import khpi.kvp.lab2_kvp.dao.DAOGood;
+import khpi.kvp.lab2_kvp.dao.DAOOrder;
+import khpi.kvp.lab2_kvp.dao.DAOUser;
 import khpi.kvp.lab2_kvp.entity.Good;
 
 import java.io.IOException;
 import java.util.List;
 
+
 @WebServlet("/productServlet")
 public class ProductListServlet extends HttpServlet {
+    private DAOGood daoGood = new DAOGood();
+    public void init() throws ServletException {
+        super.init();
+        daoGood = new DAOGood();
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Good> list = (new DAOGood()).getAllList();
+        HttpSession session = request.getSession();
+        List<Good> list = (List<Good>) session.getAttribute("products");
+
         if(list == null) {
+            list = daoGood.getAllList();
             System.out.println("Null");
         } else {
             System.out.println("Not null");
         }
-        HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("userId");
-        session = request.getSession();
         session.setAttribute("userId", userId);
+
         request.setAttribute("products", list);
         String successMessage = (String) session.getAttribute("successMessage");
         if (successMessage != null) {

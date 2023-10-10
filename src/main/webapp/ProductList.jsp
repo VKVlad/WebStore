@@ -109,7 +109,6 @@
 
 
             if (category !== currentCategory || minPrice !== currentMinPrice || maxPrice !== currentMaxPrice || sortOrder !== currentSortOrder) {
-                // Filters have changed, update the URL to trigger a page refresh
                 const urlParams = new URLSearchParams();
                 urlParams.set('category', category);
                 urlParams.set('minPrice', minPrice);
@@ -143,13 +142,11 @@
         }
 
         window.addEventListener('load', function () {
-            // Restore filter values from localStorage
             const categoryFilter = localStorage.getItem('categoryFilter');
             const minPriceFilter = localStorage.getItem('minPriceFilter');
             const maxPriceFilter = localStorage.getItem('maxPriceFilter');
             const sortOrder = localStorage.getItem('sortOrder');
 
-            // Set the saved filter values in the select and input elements
             if (categoryFilter) {
                 document.getElementById('categoryFilter').value = categoryFilter;
             }
