@@ -44,8 +44,8 @@ public class DeleteGoodServlet extends HttpServlet {
             String errorMessageDelete = "Removal failed";
             session.setAttribute("errorMessageDelete", errorMessageDelete);
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/productServlet");
-        dispatcher.forward(req, resp);
+        session.removeAttribute("productsFilter");
+        resp.sendRedirect(req.getContextPath() + "/productServlet");
     }
 
 }
