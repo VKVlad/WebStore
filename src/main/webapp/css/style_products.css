@@ -468,3 +468,88 @@ label {
     font-size: 1em;
 }
 
+/* CSS for the filters section */
+.filters {
+    display: flex;
+    align-items: center;
+    background-color: #45997e; /* Dark green background */
+    padding: 15px; /* Increased padding */
+    color: white; /* Text color */
+    margin: 20px auto; /* Increased margin for top and bottom */
+    max-width: 95%; /* Limit the maximum width */
+    border-radius: 50px;
+    justify-content: space-between; /* Evenly distribute items */
+}
+
+.filters .reset-button {
+    padding: 10px 10px;
+    border: none;
+    border-radius: 50px;
+    background-color: #D27147;
+    color: white;
+    font-size: 0.8em;
+    cursor: pointer;
+    width: 60px;
+}
+
+.filters .reset-button:hover {
+    background-color: #be6640;
+}
+
+/* Style for each filter section */
+.filter-category, .filter-price, .select-filter {
+    display: flex;
+    align-items: center;
+}
+
+/* Common styles for labels */
+.filters label {
+    margin-right: 10px;
+}
+
+/* Style for the price filter section */
+.filter-price input[type="range"] {
+    width: 150px;
+    margin-right: 10px; /* Added margin between slider and dropdown */
+}
+
+/* Apply margin for separation between sections */
+.filter-price {
+    margin: 0 40px 0 72px; /* Adjusted margin for spacing (added left margin) */
+}
+/* Apply negative margin to reduce the distance between elements */
+.filter-price:nth-child(2) {
+    margin-right: 0px;
+}
+
+/* Apply custom styles for Min and Max Price labels and inputs */
+.filter-price-label {
+    margin-right: -10px; /* Adjust the margin between label and input */
+}
+
+.filter-price input[type="number"] {
+    width: 80px; /* Adjust the width of the input if needed */
+    margin-right: -20px; /* Adjust the margin between inputs */
+}
+
+
+.filter-category, .select-filter {
+    margin: 0 20px; /* Adjusted margin for spacing */
+}
+
+.filter-category select, .filter-price select, .select-filter select {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9decd6; /* New background color for dropdowns */
+    color: #1e775f; /* Text color for dropdowns */
+}
+
+.filter-price input[type="number"] {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9decd6;
+    color: #1e775f;
+    width: calc(80px - 2 * 5px); /* Adjust the width considering padding */
+}
